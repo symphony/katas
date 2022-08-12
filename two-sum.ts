@@ -15,11 +15,9 @@ const twoSum = (nums, target) => {
     const valB = arr[inB];
     const current = valA + valB;
 
-
     if (current === target) {
-      const reversed = [...nums];
-      const foundA = nums.findIndex((v) => v === valA)
-      const foundB = nums.length - reversed.reverse().findIndex((v) => v === valB) - 1;
+      const foundA = nums.findIndex((v) => v === valA);
+      const foundB = nums.findIndex((v, i) => v === valB && i !== foundA);
 
       return [foundA, foundB];
     }
