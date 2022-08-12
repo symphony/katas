@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 // Solution 1: sort and compare opposite ends
 // /**
 //  * @param {number[]} nums
@@ -39,22 +40,17 @@
  */
 const twoSum = (nums, target) => {
   const table = {};
-  const dupes = {};
 
   nums.forEach((v, i) => {
-    if (table[v] === undefined) {
-      table[v] = i;
-      return
-    } else {
-      dupes[v] = i;
-    }
-    console.log(!table[v] ? 'table' : 'dupes');
-    console.log(!table[v] ? table : dupes);
+    if (table[v] === undefined) table[v] = i;
   });
 
   for (const [i, v] of nums.entries()) {
-    const opposite = target - v;
-    if (table[opposite] && i !== table[v]) return [table[v], i];
+    const x = target - v;
+
+    if (![undefined, i].includes(table[x])) {
+      return [table[x], i];
+    }
   };
 
   return null;
