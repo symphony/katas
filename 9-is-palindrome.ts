@@ -15,4 +15,5 @@ var isPalindrome = function (x) {
 
 console.log(isPalindrome(121));
 console.log(isPalindrome(-121));
+console.log(isPalindrome(111121111));
 console.log(isPalindrome(10));
