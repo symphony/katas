@@ -10,14 +10,18 @@ const twoSum = (nums, target) => {
   let inA = 0;
   let inB = nums.length - 1;
 
-
   for (let i = 0; i < nums.length; i++) {
     const valA = arr[inA];
     const valB = arr[inB];
     const current = valA + valB;
 
+
     if (current === target) {
-      return [nums.findIndex(v => v === valA), nums.findIndex(v => v === valB)];
+      const reversed = [...nums];
+      const foundA = nums.findIndex((v) => v === valA)
+      const foundB = nums.length - reversed.reverse().findIndex((v) => v === valB) - 1;
+
+      return [foundA, foundB];
     }
 
     if (current < target) {
