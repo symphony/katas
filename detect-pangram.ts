@@ -1,8 +1,8 @@
 const isPangram = (string) => {
-  const phrase = string.toLowerCase().split('');
-  return !(
-    'abcdefghijklmnopqrstuvwxyz'.split('').some((a) => !phrase.includes(a))
-  );
+  const phrase = string.toLowerCase();
+  return 'abcdefghijklmnopqrstuvwxyz'
+    .split('')
+    .every((a) => phrase.includes(a));
 };
 
 const string1 = "The quick brown fox jumps over the lazy dog."
