@@ -1,12 +1,12 @@
-const pad = (num) => num.toString().padStart(2, '0');
+const pad = (num) => Math.floor(num).toString().padStart(2, '0');
 
-function humanReadable(seconds) {
-  const hours = pad((seconds / 3600) | 0);
-  const minutes = pad((seconds / 60 % 60) | 0);
-  const secs = pad((seconds % 60) | 0);
+const humanReadable = (seconds) => {
+  const hours = pad(seconds / 3600);
+  const minutes = pad(seconds / 60 % 60);
+  const secs = pad(seconds % 60);
 
   return `${hours}:${minutes}:${secs}`
-}
+};
 
 // const strictEqual = require("chai").assert.strictEqual;
 
