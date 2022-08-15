@@ -1,12 +1,9 @@
 const pad = (num) => (num < 10 ? '0' : '') + (num | 0);
-
-const humanReadable = (seconds) => {
-  const hh = pad(seconds / 3600);
-  const mm = pad(seconds / 60 % 60);
-  const ss = pad(seconds % 60);
-
-  return `${hh}:${mm}:${ss}`;
-};
+const humanReadable = (seconds) => [
+  pad(seconds / 3600),
+  pad(seconds / 60 % 60),
+  pad(seconds % 60),
+].join(':');
 
 // const strictEqual = require("chai").assert.strictEqual;
 
