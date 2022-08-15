@@ -1,30 +1,32 @@
-const permutator = (inputArr) => {
-  let result = [];
+// = helpers =
+const findCombinations = (arr) => {
+  const result = [];
 
-  const permute = (arr, m = []) => {
-    if (arr.length === 0) {
-      result.push(m)
-    } else {
-      for (let i = 0; i < arr.length; i++) {
-        let curr = arr.slice();
-        let next = curr.splice(i, 1);
-        permute(curr.slice(), m.concat(next))
-      }
+  // recursively build every combination
+  const permute = (list, m = []) => {
+    if (list.length === 0) {
+      result.push(m);
+      return;
     }
-  }
-  permute(inputArr)
 
+    for (let i = 0; i < list.length; i++) {
+      const curr = list.slice();
+      const next = curr.splice(i, 1);
+      permute(curr.slice(), m.concat(next))
+    }
+  };
+
+  permute(arr)
   return result;
-}
+};
 
+// = main function =
 const nextSmaller = (n) => {
   const split = n.toString().split('');
-  const variations = permutator(split)
+  const variations = findCombinations(split)
     .map((v) => Number(v.join('')))
-    .filter((v) => v.toString().length === split.length)
+    .filter((v) => v.toString().length === split.length) // filter leading 0s
     .sort((a, b) => a - b);
 
-  console.log(variations);
-
-  return variations[variations.findIndex((v) => Number(v) === n) - 1] || -1;
+  return variations[variations.findIndex((v) => v === n) - 1] || -1;
 };
