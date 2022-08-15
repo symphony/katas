@@ -10,14 +10,20 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-const findNext = (node1, node2) => {
-  return [node1, node2].sort((a, b) =>a.val - b.val)[0];  
+const sortLists = (node1, node2) => {
+  if (node1.next === null) return node1.next = node2;
+  const [first, second] = [node1, node2].sort((a, b) => a.next.val - b.val);
+  const rest = second.next;
+  second.next = first.next;
+  first.next = second;
+  if (rest) sortLists(first.next, rest);
 };
 
-var mergeTwoLists = function(list1, list2) {
-    const temp1 = list1.next;
-    const temp2 = list2.next;
-    
-    list1.next = findNext(list1.next, list2);
-    list1.next.next = findNext()
-}; 
+var mergeTwoLists = function (list1, list2) {
+  if (!list1 || !list2) return list1 || list2 || null;
+
+  const [first, second] = [list1, list2].sort((a, b) => a.val - b.val);
+
+  sortLists(first, second);
+  return first;
+};
