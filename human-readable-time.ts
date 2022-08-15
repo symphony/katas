@@ -1,1 +1,9 @@
-const humanReadable = s => [s / 3600, s / 60 % 60, s % 60].map(n => (n < 10 ? '0' : '') + (n | 0)).join(':');
+const humanReadable = (seconds) => (
+  [
+    seconds / 3600,
+    seconds / 60 % 60,
+    seconds % 60,
+  ]
+    .map((num) => (num < 10 ? '0' : '') + (num | 0))
+    .join(':')
+);
