@@ -1,9 +1,6 @@
 const findMissingLetter = (array) => {
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-  const offset = alphabet.indexOf(array[0].toLowerCase());
-  if (array[0] !== alphabet[offset]) alphabet = alphabet.toUpperCase();
+  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const start = alphabet.indexOf(array[0]);
 
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] !== alphabet[i + offset]) return alphabet[i + offset];
-  }
+  return alphabet[array.findIndex((c, i) => c !== alphabet[i + start]) + start];
 };
