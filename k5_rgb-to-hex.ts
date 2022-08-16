@@ -1,14 +1,12 @@
 const rgb = (r, g, b) => {
-  console.log('testing', [r, g, b]);
-  const hexCode = '0123456789ABCDEF'
+  const hexCode = '0123456789ABCDEF';
+
   return [r, g, b].reduce((result, val) => {
     const num = Math.min(Math.max(val, 0), 255);
     const first = Math.floor((num) / 16);
-    const second = Math.floor(((num) % 32) / 2);
+    const second = Math.floor((num) % 16);
 
-    console.log('second', second);
-    console.log(hexCode[second]);
-    return `${result}${hexCode[first]}${hexCode[second]}`;
+    return result + hexCode[first] + hexCode[second];
   }, '');
 };
 
