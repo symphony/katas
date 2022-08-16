@@ -15,8 +15,7 @@ const nextSmaller = (n) => {
     const current = digits.toString().split('');
     const original = n.toString().split('');
 
-    let j = original.length;
-    while (j--) {
+    for (let j = original.length; j--;) {
       const foundIndex = original.indexOf(current[j]);
       if (foundIndex === -1) break;
       if (j === 0) return digits;
