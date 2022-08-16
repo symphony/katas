@@ -11,12 +11,18 @@ const nextSmaller = (n) => {
   const min = Number(sorted.join(''));
   if (min >= n) return -1;
 
-  for (let i = n - 9; i >= min; i--) {
-    const copy = n.toString().split('').sort().join('');
-    const current = i.toString().split('').sort().join('');
+  for (let digits = n - 9; digits >= min; digits--) {
+    const current = digits.toString().split('');
+    const original = n.toString().split('');
 
-    if (copy === current) return i;
+    let j = original.length;
+    while (j) {
+      const foundIndex = original.indexOf(current[--j]);
+      if (foundIndex === -1) break;
+      if (j === 0) return digits;
+      original.splice(foundIndex, 1);
+    }
   }
 
   return -1;
-}
+};
