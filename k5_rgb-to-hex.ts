@@ -3,15 +3,16 @@ const rgb = (r, g, b) => {
   const hexCode = '0123456789ABCDEF'
   return [r, g, b].reduce((result, val) => {
     const num = Math.min(Math.max(val, 0), 255);
-    const first = (Math.floor((num) / 16)) || '0';
-    const second = (Math.floor((num) / 8) % 16) || '0';
+    const first = Math.floor((num) / 16);
+    const second = Math.floor(((num) % 32) / 2);
 
-    console.log('first', first);
     console.log('second', second);
-
-    return result + hexCode[first] + hexCode[second];
+    console.log(hexCode[second]);
+    return `${result}${hexCode[first]}${hexCode[second]}`;
   }, '');
 };
+
+rgb(173, 255, 47) // 'ADFF2F'
 
 // describe("Tests", () => {
 //   it("Basic Tests", () => {
