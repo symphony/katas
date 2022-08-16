@@ -3,6 +3,4 @@
  * @param {string} p
  * @return {boolean}
  */
- const isMatch = (s, p) => {
-  return new RegExp(`^${p}$`, 'g').test(s);
-};
+const isMatch = (s, p) => new RegExp(`^${p}$`).test(s);
