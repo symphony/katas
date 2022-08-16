@@ -1,6 +1,6 @@
 const findMissingLetter = (array) => {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const start = alphabet.indexOf(array[0]);
 
-  return alphabet[array.findIndex((c, i) => c !== alphabet[i + start]) + start];
+  return alphabet.slice(start).find((c, i) => c !== array[i]);
 };
