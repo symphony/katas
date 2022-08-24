@@ -18,10 +18,13 @@ const score = (dice) => {
     count[roll] = (count[roll] || 0) + 1;
   }
 
-  score += Math.floor((count[1] || 0) / 3) * 1000 + ((count[1] || 0) % 3) * 100;
-  score += Math.floor((count[5] || 0) / 3) * 500 + ((count[5] || 0) % 3) * 50;
-  score += Math.floor((count[2] || 0) / 3) * 200;
-  score += Math.floor((count[3] || 0) / 3) * 300;
+  score += Math.floor((count[1] || 0) / 3) * 1000;
+  score += Math.floor((count[6] || 0) / 3) * 600;
+  score += Math.floor((count[5] || 0) / 3) * 500;
   score += Math.floor((count[4] || 0) / 3) * 400;
+  score += Math.floor((count[3] || 0) / 3) * 300;
+  score += Math.floor((count[2] || 0) / 3) * 200;
+  score += ((count[1] || 0) % 3) * 100;
+  score += ((count[5] || 0) % 3) * 50;
   return score;
 };
