@@ -24,5 +24,7 @@
  * @param markers
  */
 function solution(input, markers) {
-
+  const lines = input.split('\n');
+  const stripped = lines.map((line) => line.replace(/\b[${...markers}]+.*$/, ''));
+  return stripped.join('\n');
 };
