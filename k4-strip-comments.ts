@@ -23,7 +23,7 @@
  * @param input
  * @param markers
  */
-function solution(input, markers) {
+const solution = (input, markers) => {
   const filter = new RegExp(`\\s?[${markers.join('')}]+.*$`);
   return input
     .split('\n')
