@@ -24,8 +24,11 @@
  * @param markers
  */
 function solution(input, markers) {
-  const filter = new RegExp(`\\b[${markers.join('')}]+.*$`, 'gm');
+  const filter = new RegExp(`[${markers.join('')}]+.*$`);
   console.log(filter);
   console.log(input[0].replace(filter, ''));
-  return input.replace(filter, '');
+  return input
+    .split('\n')
+    .map((line) => line.replace(filter, ''))
+    .join('\\n');
 };
