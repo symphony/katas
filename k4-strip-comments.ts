@@ -24,9 +24,9 @@
  * @param markers
  */
 function solution(input, markers) {
-  const filter = new RegExp(`\b[${markers.join('')}+.*$`);
+  const filter = new RegExp(`\b[${markers.join('')}]+.*$`);
   return input
-    .split('\n')
+    .split('\\n')
     .map((line) => line.replace(filter, ''))
-    .join('\n');
+    .join('\\n');
 };
