@@ -5,6 +5,4 @@
 
  * If input data is invalid you should return 0 (as in no breaks are needed if we do not have any chocolate to split). Input will always be a non-negative integer.
  */
-const breakChocolate = (n, m) => {
-  return Math.max(n * m - 1, 0);
-};
+const breakChocolate = (n, m) => Math.max(n * m - 1, 0);
