@@ -4,10 +4,10 @@ function SearchingChallenge(strArr) {
   for (let i = 0; i < strArr.length; i++) {
     for (let j = 0; j < strArr[i].length; j++) {
       const current = strArr[i][j];
-      const up = strArr[i - 1] && strArr[i - 1][j];
+      const up = strArr[i - 1]?.[j];
+      const upRight = strArr[i - 1]?.[j + 1];
       const left = strArr[i][j - 1];
       const right = strArr[i][j + 1];
-      const upRight = strArr[i - 1] && strArr[i - 1][j + 1];
 
 
       if (current === '0' && up !== '0' && left !== '0') {
