@@ -3,12 +3,14 @@ const consolidate = (list) => {
 
   for (const next of list) {
     let overlap = false;
+
+    // problem code - quadratic algorithm
     for (const prev of [...accumulator]) {
       // check if fully above or below previous range
       if (next[1] < prev[0] || next[0] > prev[1]) continue;
 
       overlap = true;
-      // check for overlap and stretch previous start or end range
+      // check for overlap and extend previous range start and end
       if (next[0] < prev[0] && next[1] >= prev[0]) prev[0] = next[0];
       if (next[1] > prev[1] && prev[0] <= prev[1]) prev[1] = next[1];
     };
