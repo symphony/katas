@@ -1,11 +1,8 @@
 const consolidate = (prev, next) => {
-  const consolidated = [];
-  if (next[0] < prev[0]) {
-    total += Math.min(prev[0], next[1]) - next[0];
-    next[0] = Math.min(prev[1], next[1]);
-  };
-  if (next[0] < prev[1]) {
-    total += Math.max(prev[1], next[1]) - prev[1];
+  const consolidated = [[...prev]];
+  for (const current of consolidated) {
+    if (next[0] < current[0] && next[1] >= current[0]) current[0] = next[0];
+    if (next[1] > current[1] && next[0] <= current[1]) current[1] = next[1];
   };
 };
 
