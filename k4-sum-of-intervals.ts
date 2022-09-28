@@ -1,12 +1,10 @@
 const sumIntervals = (intervals) => {
-  const mySet = new Set();
+  let total = 0;
 
   for (const range of intervals) {
-    for (let i = range[0]; i < range[1]; i++) {
-      mySet.add(i)
-    };
-  }
+    console.log(range);
+    total += range[1] - range[0];
+  };
 
-
-  return [...mySet].length;
+  return total;
 };
