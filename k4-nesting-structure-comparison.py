@@ -6,4 +6,3 @@ def same_structure_as(original, other):
             if not same_structure_as(a, b):
                 return False
         return len(original) == len(other)
-
