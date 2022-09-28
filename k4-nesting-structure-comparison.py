@@ -5,4 +5,5 @@ def same_structure_as(original, other):
         for a, b in zip(original, other):
             if not same_structure_as(a, b):
                 return False
-    return False
+        return len(original) == len(other)
+
