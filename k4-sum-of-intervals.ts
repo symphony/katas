@@ -1,36 +1,25 @@
-const consolidate = (prev, next) => {
-  const consolidated = [[...prev]];
-  for (const current of consolidated) {
-    if (next[0] < current[0] && next[1] >= current[0]) current[0] = next[0];
-    if (next[1] > current[1] && next[0] <= current[1]) current[1] = next[1];
+const consolidate = (list) => {
+  const accumulator = [[0, 0]];
+  for (const next of list) {
+    for (const prev of accumulator) {
+      // check if overlap previous range
+      if (next[0] < prev[0] && next[1] >= prev[0]) prev[0] = next[0];
+      if (next[1] > prev[1] && next[0] <= prev[1]) prev[1] = next[1];
+
+      // check if fully above or below previous range
+      if (next[1] - 1 < prev[0]) accumulator.unshift(next);
+      if (next[0] - 1 > prev[1]) accumulator.push(next);
+    };
   };
+
+  return accumulator;
 };
 
 const sumIntervals = (intervals) => {
   intervals.sort((a, b) => a[1] - b[1]);
-  console.log(intervals);
+  console.log('before', intervals);
 
-  // let total = intervals[0][1] - intervals[0][0];
-  let total = 0;
-  for (let i = 0; i < intervals.length; i++) {
-    let [a, b] = intervals[i];
-
-    for (let j = 0; j <= i; j++) {
-      const [prevLow = Infinity, prevHigh = Infinity] = intervals[i - i];
-      if (a < prevLow) {
-        total += Math.min(prevLow, b) - a;
-        a = Math.min(prevHigh, b);
-        continue;
-      };
-      if (a < prevHigh) {
-        total += Math.max(prevHigh, b) - prevHigh;
-        continue;
-      };
-      total += b - a;
-      console.log(i, 0, 'adding', [a, b], 'total:', total);
-    };
-
-  };
-
-  return total;
+  const consolidated = consolidate(intervals);
+  console.log('after', consolidated);
+  return consolidated.reduce((prev, next) => prev += next[1] - next[0], 0);
 };
