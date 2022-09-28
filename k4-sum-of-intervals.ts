@@ -1,0 +1,3 @@
+const sumIntervals = (intervals) => {
+  //TODO
+}
