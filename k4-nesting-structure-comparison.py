@@ -6,3 +6,5 @@ def same_structure_as(original, other):
             if not same_structure_as(a, b):
                 return False
         return len(original) == len(other)
+    # if one but not both arguments are a list
+    return False
