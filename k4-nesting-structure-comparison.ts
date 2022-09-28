@@ -1,17 +1,16 @@
 const isSameStructure = (original, other) => {
-    if (!Array.isArray(original) && !Array.isArray(other)) {
-        return true;
-    } else if (Array.isArray(original) && Array.isArray(other)) {
-        for (let i = 0; i < original.length; i++) {
-            console.log(original[i], other[i]);
-            if (isSameStructure(original[i], other[i])) return false;
-        }
-        return original.length === other.length;
-    }
+  if (!Array.isArray(original) && !Array.isArray(other)) return true;
 
-    return false;
+  if (Array.isArray(original) && Array.isArray(other)) {
+    for (let i = 0; i < original.length; i++) {
+      if (!isSameStructure(original[i], other[i])) return false;
+    }
+    return original.length === other.length;
+  }
+
+  return false;
 };
 
 Array.prototype.sameStructureAs = function (other) {
-    return isSameStructure(this, other);
+  return isSameStructure(this, other);
 };
