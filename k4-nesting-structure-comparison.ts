@@ -1,10 +1,17 @@
-def same_structure_as(original, other):
-    if not isinstance(original, list) and not isinstance(other, list):
-        return True
-    elif isinstance(original, list) and isinstance(other, list):
-        for a, b in zip(original, other):
-            if not same_structure_as(a, b):
-                return False
-        return len(original) == len(other)
-    # if one but not both arguments are a list
-    return False
+const isSameStructure = (original, other) => {
+    if (!Array.isArray(original) && !Array.isArray(other)) {
+        return true;
+    } else if (Array.isArray(original) && Array.isArray(other)) {
+        for (let i = 0; i < original.length; i++) {
+            console.log(original[i], other[i]);
+            if (isSameStructure(original[i], other[i])) return false;
+        }
+        return original.length === other.length;
+    }
+
+    return false;
+};
+
+Array.prototype.sameStructureAs = function (other) {
+    return isSameStructure(this, other);
+};
