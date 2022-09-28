@@ -1,2 +1,2 @@
-def same_structure_as(original,other):
-    pass
+def same_structure_as(original, other):
+    return len(original) == len(other)
