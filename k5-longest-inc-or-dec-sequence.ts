@@ -1,12 +1,11 @@
 const longestComb = (arr, command) => {
-  const decreasing = command === '> >';
+  const decreasing = command === '> >' || command === '>>';
   const validSequences = arr.map(() => []);
   const counts = Array(arr.length).fill(1);
-  if (decreasing) arr.reverse();
 
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < i; j++) {
-      if (arr[j] < arr[i]) {
+      if (arr[decreasing ? i : j] < arr[decreasing ? j : i]) {
         const newLen = counts[j] + 1;
         if (newLen > counts[i]) {
           counts[i] = newLen;
@@ -17,9 +16,9 @@ const longestComb = (arr, command) => {
 
     // add end node value to sequence
     validSequences[i].push(arr[i]);
-    if (decreasing) validSequences[i].reverse();
   };
-  if (decreasing) validSequences.reverse();
+  console.log(counts);
+  console.log(validSequences);
 
   const highest = Math.max(...validSequences.map((list) => list.length));
   if (highest < 3) return [];
