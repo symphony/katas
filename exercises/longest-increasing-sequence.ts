@@ -8,21 +8,18 @@ const assert = require('assert');
  * @return {number}
  */
 const longestSequence = (sequence) => {
-  console.log('solving', sequence);
+  console.log(sequence, '\n---');
   const lengths = Array(sequence.length).fill(1);
 
-  for (let i = 0; i < sequence.length; i++) {
-    console.log(i);
-    for (let j = 1; j < i; j++) {
-      if (sequence[i] < sequence[j]) {
-        console.log('before', j, lengths);
+  for (let i = 1; i < sequence.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (sequence[j] < sequence[i]) {
         lengths[i] = Math.max(lengths[i], lengths[j] + 1);
-        console.log('after', j, lengths);
+        console.log(...lengths);
       };
     };
   };
 
-  console.log('returning', Math.max(...lengths));
   return Math.max(...lengths);
 };
 
@@ -40,32 +37,32 @@ function solveLIS(arr) {
   // is itself a minimum increasing subsequence.
   const lengthsArr = Array(arr.length).fill(1);
 
-  let i = 0;
-  let j = 1;
+  let j = 0;
+  let i = 1;
 
-  while (j < arr.length) {
-    if (arr[i] < arr[j]) {
+  while (i < arr.length) {
+    if (arr[j] < arr[i]) {
       // If current element is bigger then the previous one. then
       // it is a part of increasing subsequence where length is
       // by 1 bigger then the length of increasing subsequence
       // for the previous element.
-      const newLen = lengthsArr[i] + 1;
-      if (newLen > lengthsArr[j]) {
+      const newLen = lengthsArr[j] + 1;
+      if (newLen > lengthsArr[i]) {
         // Increase only if previous element would give us a
         // bigger subsequence length then we already have for
         // current element.
-        lengthsArr[j] = newLen;
+        lengthsArr[i] = newLen;
       }
     }
 
     // Move previous element index right.
-    i += 1;
+    j += 1;
 
     // If previous element index equals to current element index then
     // shift current element right and reset previous element index to zero.
-    if (i === j) {
-      j += 1;
-      i = 0;
+    if (j === i) {
+      i += 1;
+      j = 0;
     }
   }
 
