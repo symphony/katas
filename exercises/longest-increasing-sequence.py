@@ -1,9 +1,12 @@
 def longestSequence(nums):
-    lis = [1] * len(nums)
-    for i in range(1, lis):
-        paths = [lis[k] for k in range(i) if nums[k] < nums[i]]
-        lis[i] = 1 + max(paths, default=0)
-    return max(lis, default=0)
+    lengths = [1] * len(nums)
+
+    for i in range(1, len(nums)):
+        for k in range(i):
+            if nums[k] < nums[i]:
+                lengths[i] = max(lengths[i], lengths[k] + 1)
+
+    return max(lengths)
 
 import unittest
 
