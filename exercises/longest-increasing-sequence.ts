@@ -8,7 +8,7 @@ const assert = require('assert');
  * @return {number}
  */
 
-function longestSequence(arr) {
+function longestSequence(arr: number[]) {
   // Create an array for longest increasing substrings lengths and
   // fill it with 1s. This means that each element of the arr
   // is itself a minimum increasing subsequence.
@@ -54,7 +54,7 @@ function longestSequence(arr) {
   }
 
   return longestIncreasingLength;
-}
+};
 
 
 try {
