@@ -8,8 +8,12 @@ const array1 = [
 ];
 const array2 = [[9, 3, 4], [11], [42, 100]];
 
-const print2d = (arr) => {
-
+const print2d = (arr: (string | number)[][]) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      console.log(arr[i][j]);
+    }
+  };
 };
 
 
