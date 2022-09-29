@@ -8,14 +8,12 @@ const assert = require('assert');
  * @return {number}
  */
 const longestSequence = (sequence) => {
-  console.log(sequence, '\n---');
   const lengths = Array(sequence.length).fill(1);
 
   for (let i = 1; i < sequence.length; i++) {
     for (let j = 0; j < i; j++) {
       if (sequence[j] < sequence[i]) {
         lengths[i] = Math.max(lengths[i], lengths[j] + 1);
-        console.log(...lengths);
       };
     };
   };
@@ -89,19 +87,19 @@ try {
   console.log('[1,5,2,7,3] should return 3\n');
 };
 
-// try {
-//   assert.equal(longestSequence([13, 1, 3, 4, 8, 4]), 4);
-//   console.log('PASSED');
-// } catch {
-//   console.error('-- FAILED --');
-// } finally {
-//   console.log('[13,1,3,4,8,4] should return 4\n');
-// };
-// try {
-//   assert.equal(longestSequence([13, 1, 3, 4, 8, 19, 17, 8, 0, 20, 14]), 6);
-//   console.log('PASSED');
-// } catch {
-//   console.error('-- FAILED --');
-// } finally {
-//   console.log('[13,1,3,4,8,19,17,8,0,20,14] should return 6\n');
-// };
+try {
+  assert.equal(longestSequence([13, 1, 3, 4, 8, 4]), 4);
+  console.log('PASSED');
+} catch {
+  console.error('-- FAILED --');
+} finally {
+  console.log('[13,1,3,4,8,4] should return 4\n');
+};
+try {
+  assert.equal(longestSequence([13, 1, 3, 4, 8, 19, 17, 8, 0, 20, 14]), 6);
+  console.log('PASSED');
+} catch {
+  console.error('-- FAILED --');
+} finally {
+  console.log('[13,1,3,4,8,19,17,8,0,20,14] should return 6\n');
+};
