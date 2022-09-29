@@ -1,6 +1,6 @@
 const sumIntervals = (intervals) => {
   console.log('pre', intervals);
-  const sorted = intervals.sort((a, b) => a[0] - b[1]);
+  const sorted = intervals.sort((a, b) => a[0] - b[0]);
   console.log('sorted', sorted);
 
   let sum = 0;
