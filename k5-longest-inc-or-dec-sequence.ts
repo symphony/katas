@@ -1,5 +1,4 @@
 // = helpers =
-const compare = (a, b, greaterThan) => greaterThan ? a > b : a < b;
 const filterLongest = (arr) => {
   const longest = Math.max(...arr.map((list) => list.length));
   return arr.filter((list) => list.length === longest);
@@ -13,15 +12,16 @@ const lookupSort = (left, right, external) => {
 
 // = main function =
 const longestComb = (arr, command) => {
-  arr = arr.map((a) => new Set([a])); // necessary to distinguish duplicate values
-  const decreasing = command === '> >' || command === '>>';
+  // convert all numbers to objects - necessary to distinguish duplicate values later
+  arr = arr.map((a) => [a]);
+  const compare = (a, b) => command === '> >' || command === '>>' ? a > b : a < b;
   const validSequences = [[arr[0]]];
 
   for (let i = 1; i < arr.length; i++) {
     const candidates = [];
-    for (const sequence of validSequences) {
-      const [a, b] = [...sequence[sequence.length - 1], ...arr[i]];
-      if (compare(a, b, decreasing)) candidates.push([...sequence, arr[i]])
+    for (const nums of validSequences) {
+      const [a, b] = [...nums[nums.length - 1], ...arr[i]];
+      if (compare(a, b)) candidates.push([...nums, arr[i]])
     };
 
     validSequences.push(...filterLongest(candidates[0] ? candidates : [[arr[i]]]));
@@ -29,9 +29,7 @@ const longestComb = (arr, command) => {
 
   const results = filterLongest(validSequences);
   if (results[0].length < 3) return [];
-
   // convert sets back to integers
-  const parsed = results.sort((a, b) => lookupSort(a, b, arr)).map((list) => list.map((set) => [...set][0]))
-  if (results.length === 1) return parsed[0];
-  return parsed;
+  const parsed = results.sort((a, b) => lookupSort(a, b, arr)).map((list) => list.map((num) => num[0]));
+  return results.length === 1 ? parsed[0] : parsed;
 };
