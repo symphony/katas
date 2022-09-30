@@ -1,14 +1,16 @@
+// = helpers =
 const compare = (a, b, greaterThan) => greaterThan ? a > b : a < b;
 const filterLongest = (arr) => {
   const longest = Math.max(...arr.map((list) => list.length));
   return arr.filter((list) => list.length === longest);
 };
-const deepSort = (left, right) => {
-  const i = left.findIndex((x, i) => left[i] !== right[i])
-  return left[i] - right[i];
+const deepSort = (left, right, external) => {
+  const i = left.findIndex((x, i) => external[external.indexOf(left[i])] !== external[external.indexOf(right[i])]);
+  const [a, b] = [external.indexOf(left[i]), external.indexOf(right[i])];
+  return a - b;
 };
 
-
+// = main function =
 const longestComb = (arr, command) => {
   const decreasing = command === '> >' || command === '>>';
   const validSequences = [[arr[0]]];
@@ -24,5 +26,7 @@ const longestComb = (arr, command) => {
 
   const results = filterLongest(validSequences);
   if (results[0].length < 3) return [];
-  return results.length > 1 ? results.sort(deepSort) : results[0];
+  if (results.length === 1) return results[0];
+
+  return results.sort((a, b) => deepSort(a, b, arr));
 };
