@@ -3,6 +3,11 @@ const filterLongest = (arr) => {
   const longest = Math.max(...arr.map((list) => list.length));
   return arr.filter((list) => list.length === longest);
 };
+const deepSort = (left, right) => {
+  const i = left.findIndex((x, i) => left[i] !== right[i])
+  return left[i] - right[i];
+};
+
 
 const longestComb = (arr, command) => {
   const decreasing = command === '> >' || command === '>>';
@@ -19,5 +24,5 @@ const longestComb = (arr, command) => {
 
   const results = filterLongest(validSequences);
   if (results[0].length < 3) return [];
-  return results.length > 1 ? results.sort((a, b) => a[0] - b[0]) : results[0];
+  return results.length > 1 ? results.sort(deepSort) : results[0];
 };
