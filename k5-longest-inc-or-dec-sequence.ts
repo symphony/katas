@@ -1,26 +1,29 @@
+const compare = (a, b, greaterThan) => greaterThan ? a > b : a < b;
+const filterLongest = (arr) => {
+  const longest = Math.max(...arr.map((list) => list.length));
+  return arr.filter((list) => list.length === longest);
+};
+
 const longestComb = (arr, command) => {
-  console.log(arr);
   const decreasing = command === '> >' || command === '>>';
-  const validSequences = arr.map((num) => [num]);
-  const counts = Array(arr.length).fill(Array(arr.length).fill(1));
+  const validSequences = [[arr[0]]];
 
   for (let i = 1; i < arr.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (arr[decreasing ? i : j] < arr[decreasing ? j : i]) {
-        const newLen = counts[j][j] + 1;
-        if (newLen > counts[j][i]) {
-          counts[j][i] = newLen;
-          validSequences[i].splice(-1, 0, arr[j]);
-        };
-      };
+    const candidates = [];
+    for (const sequence of validSequences) {
+      if (compare(sequence[sequence.length - 1], arr[i], decreasing)) candidates.push([...sequence, arr[i]])
     };
+
+    console.log(arr[i], 'candidates', filterLongest(candidates));
+
+    validSequences.push(...filterLongest(candidates));
   };
-  decreasing && console.log(counts);
-  decreasing && console.log('results', validSequences);
 
-  const highest = Math.max(...validSequences.map((list) => list.length));
-  if (highest < 3) return [];
+  console.log('---', arr, '---');
+  console.log(validSequences);
 
-  const results = validSequences.filter((list) => list.length === highest);
+
+  const results = filterLongest(validSequences);
+  if (results[0].length < 3) return [];
   return results.length > 1 ? results : results[0];
 };
