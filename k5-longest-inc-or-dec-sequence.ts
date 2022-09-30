@@ -14,10 +14,10 @@ const longestComb = (arr, command) => {
       if (compare(sequence[sequence.length - 1], arr[i], decreasing)) candidates.push([...sequence, arr[i]])
     };
 
-    validSequences.push(...(candidates[0] ? candidates : [[arr[i]]]));
+    validSequences.push(...filterLongest(candidates[0] ? candidates : [[arr[i]]]));
   };
 
   const results = filterLongest(validSequences);
   if (results[0].length < 3) return [];
-  return results.length > 1 ? results : results[0];
+  return results.length > 1 ? results.sort((a, b) => a[0] - b[0]) : results[0];
 };
