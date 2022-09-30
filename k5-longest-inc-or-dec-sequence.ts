@@ -14,14 +14,8 @@ const longestComb = (arr, command) => {
       if (compare(sequence[sequence.length - 1], arr[i], decreasing)) candidates.push([...sequence, arr[i]])
     };
 
-    console.log(arr[i], 'candidates', filterLongest(candidates));
-
-    validSequences.push(...filterLongest(candidates));
+    validSequences.push(...(candidates[0] ? candidates : [[arr[i]]]));
   };
-
-  console.log('---', arr, '---');
-  console.log(validSequences);
-
 
   const results = filterLongest(validSequences);
   if (results[0].length < 3) return [];
