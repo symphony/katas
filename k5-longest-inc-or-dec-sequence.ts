@@ -5,7 +5,7 @@ const longestComb = (arr, command) => {
   for (const end of arr) {
     const candidates = [];
     for (const sequence of validSequences) {
-      if (compare(sequence[sequence.length - 1], end)) candidates.push([...sequence, end])
+      if (compare(sequence[sequence.length - 1], end)) candidates.push([...sequence, end]);
       candidates.push(sequence);
     };
 
