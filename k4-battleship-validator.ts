@@ -1,17 +1,17 @@
 function validateBattlefield(field) {
-  field.forEach(a => console.log(a.join(', ')))
-  console.log();
   // {length: count}
   const ships = {
-    4: 4,
-    3: 2,
-    2: 3,
-    1: 4,
+    4: 1, // battleship
+    3: 2, // cruiser
+    2: 3, // destroyer
+    1: 4, // submarine
   };
+
 
   // build map to keep track of visited coordinates
   const marked = field.map((row) => row.map((col) => false));
-
+  field.forEach(a => console.log(a.join(', ')))
+  console.log();
   /** checks forward neighbouring coords for ships - returns false if invalid ship found   */
   const checkForShips = (y, x, dir) => {
     if (marked[y][x]) return 0; // skip
