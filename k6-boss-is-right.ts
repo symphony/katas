@@ -6,7 +6,7 @@ function correctOrder(list) {
       if (Math.round(wheelCost * 100) % 100 === 79) {
         const price = Math.round(((tireCost * 4) + wheelCost) * 100) / 100;
         return { tire: 4, steeringWheel: 1, totalPrice: price };
-      }
+      };
     };
   });
 };
