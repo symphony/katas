@@ -1,9 +1,11 @@
 function validateBattlefield(field) {
+  field.forEach(a => console.log(a.join(', ')))
+  console.log();
   // {length: count}
   const ships = {
     4: 4,
     3: 2,
-    2: 2,
+    2: 3,
     1: 4,
   };
 
@@ -11,17 +13,19 @@ function validateBattlefield(field) {
   const marked = field.map((row) => row.map((col) => false));
 
   /** checks forward neighbouring coords for ships - returns false if invalid ship found   */
-  const checkForShips = (y, x) => {
-    console.log('checking', y, x, marked[y][x], field[y][x]);
+  const checkForShips = (y, x, dir) => {
     if (marked[y][x]) return 0; // skip
+    console.log(`${y}${x} ${field[y][x]}` );
     marked[y][x] = true;
 
     if (!field[y][x]) return 0;
     if (field[y - 1]?.[x + 1] || field[y + 1]?.[x + 1]) return false;
 
-    const right = checkForShips(y, x + 1);
-    const down = checkForShips(y + 1, x)
-    if (right === false || down === false) return false;
+    const right = !(dir === 'vv') ? checkForShips(y, x + 1, '>>') : 0;
+    if (right === false) return false;
+
+    const down = !(dir === '>>') ? checkForShips(y + 1, x, 'vv') : 0;
+    if (down === false) return false;
     if (right && down) return false;
 
     return 1 + right + down;
@@ -32,12 +36,11 @@ function validateBattlefield(field) {
       const found = checkForShips(y, x);
       if (found === 0) continue;
       if (found === false || found > 4) return false;
-      console.log('found', found);
-      console.log('count', ships[found] - 1);
+      console.log(found, ':', ships[found] - 1);
       if (--ships[found] < 0) return false;
     };
-    console.log(ships, !Object.values(ships).some(Boolean));
   };
 
+  console.log(ships);
   return true;
 };
