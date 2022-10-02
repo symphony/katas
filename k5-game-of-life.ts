@@ -5,5 +5,5 @@ function nextGen(cells) {
       state(cell, [-1, 0, 1]
         .reduce((friends, x) => friends + [-1, 0, 1]
           .reduce((count, y) => (
-            x || y ? (cells[i + y]?.[j + x] || 0) + count : count), 0), 0))))));
+            (x || y ? cells[i + y]?.[j + x] || 0 : 0) + count), 0), 0))))));
 };
