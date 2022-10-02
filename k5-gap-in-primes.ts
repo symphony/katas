@@ -1,12 +1,12 @@
 function gap(g, m, n) {
   const isComposite = (n) => {
     if (n <= 2) return false;
-    for (let i = 2; i < n; i++)
+    for (let i = 2; i * i <= n; i++)
       if (n % i === 0) return false;
     return true;
   };
 
-  for (let i = m; m <= n; i++) {
+  for (let i = m; i <= n; i++) {
     if (n < m + g) return null;
 
     if (isComposite(i)) {
