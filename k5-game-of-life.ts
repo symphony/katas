@@ -1,15 +1,15 @@
 function nextGen(cells) {
-  const state = ({ alive, friends, }) => (alive && friends === 2 || friends === 3) ? 1 : 0;
-  const data = cells.map((a) => a.map((b) => ({ alive: false, friends: 0, })));
+  const state = ({ alive, friends }) => (alive && friends === 2 || friends === 3) ? 1 : 0;
+  const data = cells.map((a) => a.map((b) => ({ alive: false, friends: 0 })));
 
-  for (let r = 0; r < cells.length; r++) {
-    for (let c = 0; c < cells[r].length; c++) {
-      for (const y of [-1, 0, 1]) {
-        data[r][c].alive = Boolean(cells[r][c]);
+  for (let y = 0; y < cells.length; y++) {
+    for (let x = 0; x < cells[y].length; x++) {
+      for (const a of [-1, 0, 1]) {
+        data[y][x].alive = Boolean(cells[y][x]);
 
-        for (const x of [-1, 0, 1]) {
-          if (y === 0 && x === 0) continue;
-          data[r][c].friends += cells[r + y]?.[c + x] || 0;
+        for (const b of [-1, 0, 1]) {
+          if (a === 0 && b === 0) continue;
+          data[y][x].friends += cells[y + a]?.[x + b] || 0;
         };
       };
     };
