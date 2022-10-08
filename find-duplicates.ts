@@ -1,13 +1,20 @@
 function findDuplicateIndexes(arr) {
-  const duplicates = arr.flatMap((item, index, source) => {
-    const firstIndex = source.indexOf(item);
-    return index !== firstIndex ? [firstIndex, index] : [];
+  const map = {}
+  arr.forEach((item, i) => { map[item] = i });
+
+  const duplicateIndexes = new Set();
+  arr.forEach((item, i) => {
+    if (i !== map[item]) duplicateIndexes.add(map[item]).add(i);
   });
 
-  return duplicates;
+  return [...duplicateIndexes];
 };
 
-const arr = ['banana', 'apple', 'blueberry', 'apple', 'orange'];
-console.log(findDuplicateIndexes(arr));
+const arr1 = ['banana', 'apple', 'blueberry', 'apple', 'orange'];
+const arr2 = ['banana', 'apple', 'blueberry', 'apple', 'apple'];
 
-// Eg: [“banana”, “apple”, “blueberry”, “apple”, “orange”] should return [1, 3]
+console.log(findDuplicateIndexes(arr1));
+// return [1, 3]
+
+console.log(findDuplicateIndexes(arr2));
+// returns [1, 3, 4]
