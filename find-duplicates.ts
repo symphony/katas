@@ -1,7 +1,7 @@
 function findDuplicateIndexes(arr) {
   const map = {};
   arr.forEach((item, i) => { map[item] ? map[item].push(i) : map[item] = [i] });
-  return Object.values(map).filter((list) => list.length > 1).flat();
+  return Object.values(map).filter((list) => list.length > 1);
 };
 
 const arr1 = ['banana', 'apple', 'blueberry', 'apple', 'orange'];
