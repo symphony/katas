@@ -1,3 +1,3 @@
 function smaller(arr) {
-  //code me
+  const sorted = arr;
 };
