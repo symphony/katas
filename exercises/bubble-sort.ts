@@ -1,11 +1,14 @@
-const bubbleSort = (list) => {
+const bubbleSort = (list, finished = true) => {
   for (let i = 0; i < list.length - 1; i++) {
     const [a, b] = [list[i], list[i + 1]];
-    if (b < a){ list.splice(i, 2, b, a)};
+    if (b < a) {
+      list.splice(i, 2, b, a)
+      finished = false;
+    };
 
   };
 
-  return list;
+  return finished ? list : bubbleSort(list);
 };
 
 
