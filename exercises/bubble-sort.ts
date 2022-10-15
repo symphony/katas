@@ -12,6 +12,8 @@ const bubbleSort = (list) => {
         finished = false;
       };
     };
+
+    lastEle--;
   };
 
   return list;
