@@ -1,3 +1,4 @@
+// get password length with validation via recursion
 const getLength = (prompt = 'Enter the number of characters', start = 8, end = 128) => {
   const answer = Number(window.prompt(`${prompt} between ${start} and ${end}:`));
   const valid = answer && answer >= start && answer <= end;
