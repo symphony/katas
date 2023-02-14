@@ -1,9 +1,3 @@
-
-const getChoice = (option) => {
-  const messagePrompt = `Would you like ${option}?`;
-  return confirm(messagePrompt);
-};
-
 const getLength = (prompt = 'Enter the number of characters', start = 8, end = 128) => {
   const answer = Number(window.prompt(`${prompt} between ${start} and ${end}:`));
   const valid = answer && answer >= start && answer <= end;
@@ -20,7 +14,7 @@ const generatePassword = () => {
 
   // get user options
   const characterPool = Object.keys(charactersMap)
-    .flatMap((name) => getChoice(name) ? [...charactersMap[name]] : []);
+    .flatMap((name) => confirm(`Would you like ${name}?`) ? [...charactersMap[name]] : []);
 
   // if all options were false, restart process via recursion
   if (!characterPool.length) return generatePassword();
