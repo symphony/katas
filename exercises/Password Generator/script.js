@@ -18,7 +18,10 @@ const generatePassword = () => {
     .flatMap((name) => confirm(`Would you like ${name}?`) ? [...charactersMap[name]] : []);
 
   // if all options were false, restart process via recursion
-  if (!characterPool.length) return generatePassword();
+  if (!characterPool.length) {
+    alert("Please select at least one character type.");
+    return generatePassword();
+  }
 
   // build password
   const length = getLength();
