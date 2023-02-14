@@ -30,6 +30,7 @@ const generatePassword = () => {
   return result;
 };
 
+// boilerplate testrunner
 // Get references to the #generate element
 const generateBtn = document.querySelector("#generate");
 
