@@ -4,10 +4,10 @@ const getChoice = (option) => {
   return confirm(messagePrompt);
 };
 
-const getLength = (prompt = 'Enter the number of characters between', start = 8, end = 128) => {
-  const answer = Number(window.prompt(`${prompt} ${start} and ${end}:`));
+const getLength = (prompt = 'Enter the number of characters', start = 8, end = 128) => {
+  const answer = Number(window.prompt(`${prompt} between ${start} and ${end}:`));
   const valid = answer && answer >= start && answer <= end;
-  return valid ? answer : getLength('Please enter a whole number between');
+  return valid ? answer : getLength('Please enter a whole number');
 };
 
 const generatePassword = () => {
