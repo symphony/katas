@@ -2,7 +2,7 @@
 const getLength = (prompt = 'Enter the number of characters', start = 8, end = 128) => {
   const answer = Number(window.prompt(`${prompt} between ${start} and ${end}:`));
   const valid = answer && answer >= start && answer <= end;
-  return valid ? answer : getLength('Please enter a whole number');
+  return valid ? answer : getLength('Please enter a whole number', start, end);
 };
 
 const generatePassword = () => {
