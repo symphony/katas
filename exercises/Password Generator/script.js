@@ -1,6 +1,6 @@
 
 const getChoice = (option) => {
-  const messagePrompt = 'Would you like ' + option + '?';
+  const messagePrompt = `Would you like ${option}?`;
   return confirm(messagePrompt);
 };
 
