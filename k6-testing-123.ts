@@ -1,3 +1,3 @@
 export function number(array: string[]): string[] {
-  return [];
-}
+  return array.map((a, i) => `${i + 1}: ${a}`);
+};
