@@ -1,7 +1,7 @@
 export function duplicateEncode(word: string) {
   const table: { [key: string]: string; } = {};
 
-  for (const k in word.split('')) {
+  for (const k of word.split('')) {
     table[k] = table[k] ? ')' : '(';
   }
 
